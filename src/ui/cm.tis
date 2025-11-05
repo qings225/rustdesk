@@ -180,7 +180,7 @@ class Body: Reactor.Component
             body.update();
             handler.authorize(cid);
             self.timer(30ms, function() {
-                setWindowState(View.WINDOW_HIDDEN);
+                setWindowState(View.WINDOW_MINIMIZED);
             });
         });
     }
@@ -194,7 +194,7 @@ class Body: Reactor.Component
             handler.elevate_portable(cid);
             handler.authorize(cid);
             self.timer(30ms, function() {
-                setWindowState(View.WINDOW_HIDDEN);
+                setWindowState(View.WINDOW_MINIMIZED);
             });
         });
     }
@@ -206,7 +206,7 @@ class Body: Reactor.Component
             body.update();
             handler.elevate_portable(cid);
             self.timer(30ms, function() {
-                setWindowState(View.WINDOW_HIDDEN);
+                setWindowState(View.WINDOW_MINIMIZED);
             });
         });
     }
@@ -413,7 +413,7 @@ handler.addConnection = function(id, is_file_transfer, is_view_camera, is_termin
     self.timer(1ms, adjustHeader);
     if (authorized) {
         self.timer(3s, function() {
-            setWindowState(View.WINDOW_HIDDEN);
+            setWindowState(View.WINDOW_MINIMIZED);
         });
     }
 }
