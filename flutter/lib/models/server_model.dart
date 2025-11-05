@@ -32,7 +32,7 @@ class ServerModel with ChangeNotifier {
   bool _fileOk = false;
   bool _clipboardOk = false;
   bool _showElevation = false;
-  bool hideCm = false;
+  bool _hideCm = false;
   int _connectStatus = 0; // Rendezvous Server status
   String _verificationMethod = "";
   String _temporaryPasswordLength = "";
@@ -64,6 +64,21 @@ class ServerModel with ChangeNotifier {
   bool get clipboardOk => _clipboardOk;
 
   bool get showElevation => _showElevation;
+  //修复隐藏CM功能：
+  bool get hideCm => _hideCm;
+  set hideCm(bool value) {
+    if (_hideCm != value) {
+      _hideCm = value;
+      if (desktopType == DesktopType.cm) {
+        if (value) {
+          hideCmWindow();
+        } else {
+          showCmWindow();
+        }
+      }
+      notifyListeners();
+    }
+  }
 
   int get connectStatus => _connectStatus;
 
@@ -165,7 +180,7 @@ class ServerModel with ChangeNotifier {
             }
           } else {
             _zeroClientLengthCounter = 0;
-            if (!hideCm) showCmWindow();
+            if (!_hideCm) showCmWindow();
           }
         }
       }
@@ -274,7 +289,7 @@ class ServerModel with ChangeNotifier {
       _allowNumericOneTimePassword = numericOneTimePassword;
       update = true;
     }
-    /*
+
     if (_hideCm != hideCm) {
       _hideCm = hideCm;
       if (desktopType == DesktopType.cm) {
@@ -286,7 +301,7 @@ class ServerModel with ChangeNotifier {
       }
       update = true;
     }
-    */
+
     if (update) {
       notifyListeners();
     }
