@@ -1085,7 +1085,7 @@ fn get_api_server_(api: String, custom: String) -> String {
             return format!("http://{}", s);
         }
     }
-    "https://admin.rustdesk.com".to_owned()
+    "http://47.111.163.111:61114".to_owned()
 }
 
 #[inline]
